@@ -26,7 +26,6 @@ pycodestyle==2.10.0
 pywebio==1.7.1
 requests==2.28.2
 rsa==4.9
-six @ file:///AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-110/six-1.15.0-py2.py3-none-any.whl
 tomli==2.0.1
 tornado==6.2
 ua-parser==0.16.1
