@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Application</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="chatbox">
+        <div id="chatlogs">
+            <!-- Chat logs will be inserted here dynamically -->
+        </div>
+
+        <div id="chat_interface">
+            <input type="text" id="chat_input" placeholder="Type a message..." />
+            <button id="send_button">Send</button>
+        </div>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#send_button').click(function() {
+                let message = $('#chat_input').val();
+                $.ajax({
+                    url: '/api/chat', 
+                    data: {'message': message},
+                    type: 'post',
+                    success: function(response) {
+                        let chatlogs = $('#chatlogs');
+                        chatlogs.append('<div>' + response.message + '</div>');
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+                $('#chat_input').val('');
+            });
+        });
+    </script>
+</body>
+</html>
