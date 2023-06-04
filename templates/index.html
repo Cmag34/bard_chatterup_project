@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chat Application</title>
+    <title>Chatter Up</title>
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <h1 class="header">Chatter Up</h1>
     <div id="chatbox">
         <div id="chatlogs">
             <!-- Chat logs will be inserted here dynamically -->
@@ -21,21 +22,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#send_button').click(function() {
+            function sendMessage() {
                 let message = $('#chat_input').val();
+                $('#chatlogs').append('<div class="message user">' + message + '</div>');
                 $.ajax({
                     url: '/api/chat', 
                     data: {'message': message},
                     type: 'post',
                     success: function(response) {
                         let chatlogs = $('#chatlogs');
-                        chatlogs.append('<div>' + response.message + '</div>');
+                        chatlogs.append('<div class="message server">' + response.message + '</div>');
+                        $('#chatlogs').scrollTop($('#chatlogs')[0].scrollHeight);
                     },
                     error: function(error) {
                         console.log(error);
                     }
                 });
                 $('#chat_input').val('');
+            }
+
+            $('#send_button').click(sendMessage);
+
+            $('#chat_input').keypress(function (e) {
+                if (e.which == 13) {
+                    sendMessage();
+                    return false;
+                }
             });
         });
     </script>

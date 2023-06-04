@@ -1,32 +1,52 @@
-body {
-    font-family: Arial, sans-serif;
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
 }
 
 #chatbox {
-    width: 300px;
-    height: 500px;
-    border: 1px solid black;
-    padding: 10px;
+    width: 400px;
     margin: 0 auto;
 }
 
 #chatlogs {
     height: 400px;
-    overflow-y: auto;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#chatlogs .message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+    line-height: 1.4;
+    position: relative;
+}
+
+#chatlogs .user {
+    background-color: #4CAF50;
+    color: white;
+    align-self: flex-start;
+    margin-left: 5px;
+}
+
+#chatlogs .server {
+    background-color: #FFFFCC;
+    color: black;
+    align-self: flex-end;
+    margin-left: 20%;
 }
 
 #chat_interface {
+    display: flex;
+    justify-content: space-between;
     margin-top: 10px;
+    padding: 10px;
 }
 
 #chat_input {
-    width: 80%;
-    height: 30px;
-}
-
-#send_button {
-    height: 34px;
-    width: 18%;
-    background-color: #4CAF50;
-    color: white;
+    flex-grow: 1;
+    margin-right: 10px;
 }
